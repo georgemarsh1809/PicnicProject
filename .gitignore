@@ -1,0 +1,13 @@
+venv/
+env/
+.venv/
+ENV/
+env.bak/
+*.env
+
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyc
+*.so
