@@ -8,6 +8,7 @@ from services import *
 
 app = FastAPI() 
 
+# Data Models
 class URLPayload(BaseModel):
     url: AnyHttpUrl
 
