@@ -1,22 +1,26 @@
 [
     {
         "id": 1,
-        "code": "KYgrDJ",
-        "url": "https://google.co.uk/"
+        "longUrl": "https://google.com/",
+        "shortUrl": "https://pic.ni/KYgrDJ",
+        "code": "KYgrDJ"
     },
     {
         "id": 2,
-        "code": "0LoPBZ",
-        "url": "https://bing.co.uk/"
+        "longUrl": "https://www.google.com/",
+        "shortUrl": "https://pic.ni/0LoPBZ",
+        "code": "0LoPBZ"
     },
     {
         "id": 3,
-        "code": "zL6EYv",
-        "url": "https://yelp.co.uk/"
+        "longUrl": "https://georgemarsh.co.uk/",
+        "shortUrl": "https://pic.ni/zL6EYv",
+        "code": "zL6EYv"
     },
     {
         "id": 4,
-        "code": "0DwMLX",
-        "url": "https://abc.co.uk/"
+        "longUrl": "https://youtube.com/",
+        "shortUrl": "https://pic.ni/0DwMLX",
+        "code": "0DwMLX"
     }
 ]

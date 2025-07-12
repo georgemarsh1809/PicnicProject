@@ -1,35 +1,131 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import URLCodes from '../../backend/urlCodes.json';
+import React, { useState } from 'react';
 
 function App() {
-  const [count, setCount] = useState(0)
+    // const [URLCodes, setURLCodes] = useState(URLCodes);
+    const [newUrl, setNewUrl] = useState('');
 
-  return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    const handleInputChange = (e) => {
+        setNewUrl(e.target.value);
+    };
+
+    const handleKeyPress = (e) => {
+        if (e.key === 'Enter') {
+            handleAddURL();
+        }
+    };
+    const handleRedirect = async (code) => {
+        try {
+            const res = await fetch(`http://localhost:8000/${code}`, {
+                method: 'GET',
+            });
+
+            if (!res.ok) {
+                throw new Error('Failed to redirect');
+            }
+
+            const data = await res.json();
+            window.open(data.longUrl, '_blank'); // Redirect to the long URL
+        } catch (error) {
+            console.error('Error redirecting:', error);
+        }
+    };
+
+    const handleAddURL = async () => {
+        try {
+            const res = await fetch('http://localhost:8000/shorten/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    url: newUrl,
+                }),
+            });
+
+            if (!res.ok) {
+                const error = await res.json();
+                throw new Error(error.detail);
+            }
+        } catch (error) {
+            console.error('Error adding URL:', error.message);
+            alert(error.message);
+        }
+
+        setNewUrl('');
+    };
+
+    return (
+        <>
+            <div className="header">
+                <h1>Picnic Project</h1>
+                <h2>
+                    Welcome to my Picnic Project! This is a URL shortener API.
+                </h2>
+            </div>
+            <div className="input-container">
+                <input
+                    placeholder="Enter a long URL you wish to shorten..."
+                    className="url-input"
+                    onChange={handleInputChange}
+                    onKeyDown={handleKeyPress}
+                    value={newUrl}
+                />
+                <button
+                    className="add-button"
+                    onClick={handleAddURL}
+                    disabled={!newUrl}
+                >
+                    +
+                </button>
+            </div>
+            <div>
+                <h3>Saved URLs</h3>
+                <table className="url-codes-table">
+                    <thead>
+                        <tr>
+                            <th className="cell id-column">ID</th>
+                            <th className="cell origin-column">Origin URL</th>
+                            <th className="cell shorturl-column">Short URL</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {URLCodes && URLCodes.length
+                            ? URLCodes.map((codeObject, index) => {
+                                  return (
+                                      <tr key={`code-${index}`}>
+                                          <td className="cell id-cell">
+                                              {codeObject.id}
+                                          </td>
+                                          <td className="cell ">
+                                              <a
+                                                  href={codeObject.longUrl}
+                                                  target="_blank"
+                                              >
+                                                  {codeObject.longUrl}
+                                              </a>
+                                          </td>
+                                          <td className="cell">
+                                              <button
+                                                  className="redirect-button"
+                                                  onClick={() =>
+                                                      handleRedirect(
+                                                          codeObject.code
+                                                      )
+                                                  }
+                                              >
+                                                  {codeObject.shortUrl}
+                                              </button>
+                                          </td>
+                                      </tr>
+                                  );
+                              })
+                            : 'No codes available'}
+                    </tbody>
+                </table>
+            </div>
+        </>
+    );
 }
 
-export default App
+export default App;
