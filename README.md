@@ -1,6 +1,6 @@
 # URL Shortener API
 
-![Alt text](/picnicproj.png 'screenshot')
+![Alt text](/frontend/public/picnicproj.png 'screenshot')
 
 ### Client: Picnic | Job: Junior Backend Engineer
 
