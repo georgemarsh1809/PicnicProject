@@ -1,18 +1,18 @@
-import json
+from .models import URLObject
 from fastapi import Response, HTTPException
 from fastapi.encoders import jsonable_encoder
 from fastapi.responses import JSONResponse
-from pydantic import BaseModel, AnyHttpUrl
+from pydantic import AnyHttpUrl
 from hashids  import Hashids
+import json
 
 hashids = Hashids(min_length=6, salt="random_salt")
 
-# Data Models
-class URLObject(BaseModel):
-    id: int
-    longUrl: AnyHttpUrl
-    shortUrl: AnyHttpUrl
-    code: str
+# Base URL for the shortened URLs
+#   This is only used to generate the short URL, which is then returned to the frontend for display purposes only.
+#   The frontend will handle the actual redirection to the long URL when the user clicks on the shortened URL, 
+#   which parses the code associated to the URL.
+BASE_URL = "https://pic.ni/"
 
 def shorten_and_save(newUrl: AnyHttpUrl) -> Response:
     try:
@@ -37,7 +37,7 @@ def shorten_and_save(newUrl: AnyHttpUrl) -> Response:
 
     # If the list is empty, we can use the default new_id and create a new entry
     new_code = hashids.encode(new_id) # The code is generated from the new ID using hashids - ensures no duplicate codes
-    new_shortUrl = "https://pic.ni/" + new_code
+    new_shortUrl = BASE_URL + new_code
     new_entry = jsonable_encoder(URLObject(id=new_id, longUrl=newUrl, shortUrl=new_shortUrl, code=new_code).model_dump(mode="json")) # Create a new URLObject and convert it to a dictionary
 
     url_codes.append(new_entry)

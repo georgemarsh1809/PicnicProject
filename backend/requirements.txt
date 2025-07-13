@@ -1,0 +1,6 @@
+fastapi
+hashids
+pydantic
+uvicorn
+json
+pytest

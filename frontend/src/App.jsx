@@ -97,7 +97,7 @@ function App() {
                                           <td className="cell id-cell">
                                               {codeObject.id}
                                           </td>
-                                          <td className="cell ">
+                                          <td className="cell origin-cell">
                                               <a
                                                   href={codeObject.longUrl}
                                                   target="_blank"

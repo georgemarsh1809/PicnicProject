@@ -1,26 +1,22 @@
-from services import *
-from pydantic import BaseModel, AnyHttpUrl
+from .services import shorten_and_save
+from .models import URLPayload
 from fastapi import FastAPI, Response, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.encoders import jsonable_encoder
-from fastapi.responses import RedirectResponse, JSONResponse
+from fastapi.responses import JSONResponse
 from fastapi.exceptions import RequestValidationError
 import json
 
 app = FastAPI() 
 
-# Configure CORS
+# Configure CORS to allow requests from React
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Allows FastAPI to talk to React over localhost
+    allow_origins=["*"],  # 
     allow_credentials=True,
     allow_methods=["*"],  
     allow_headers=["*"],  
 )
-
-# Data Models
-class URLPayload(BaseModel):
-    url: AnyHttpUrl
 
 # Endpoints
 @app.get("/")

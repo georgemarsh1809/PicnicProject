@@ -30,7 +30,6 @@ body {
     align-items: center;
     min-width: 320px;
     min-height: 100vh;
-    border: solid 1px #ddd;
 }
 
 h1 {
@@ -121,7 +120,15 @@ h1 {
 }
 
 .origin-column {
-    width: 63%;
+    width: 30rem;
+}
+
+.origin-cell {
+    max-width: 30rem;
+    /* flex-wrap: wrap; */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .shorturl-column {
