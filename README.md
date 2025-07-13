@@ -1,5 +1,7 @@
 # URL Shortener API
 
+![Alt text](/picnicproj.png 'screenshot')
+
 ### Client: Picnic | Job: Junior Backend Engineer
 
 This is my project for the brief provided by Picnic, which was to create a URL

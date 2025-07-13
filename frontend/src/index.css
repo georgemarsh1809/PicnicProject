@@ -15,11 +15,12 @@
 
 a {
     font-weight: 500;
-    color: #f0f0f0;
+    color: #c4c4c4;
     text-decoration: inherit;
+    transition: color 0.3s ease;
 }
 a:hover {
-    color: #acacac;
+    color: #ffffff;
     text-decoration: underline;
 }
 
@@ -71,17 +72,19 @@ h1 {
     justify-content: center;
     padding: 0.5rem 1rem;
     background-color: #28a745;
-    color: white;
+    color: rgb(237, 237, 237);
     font-size: 1rem;
     border: none;
-    width: 95%;
-    border-radius: 2px;
+    margin: auto;
+    width: 100%;
+    border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
 
 .redirect-button:hover {
     background-color: #218838;
+    text-decoration: underline;
 }
 
 .add-button {
