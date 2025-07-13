@@ -7,7 +7,7 @@
     },
     {
         "id": 2,
-        "longUrl": "https://www.google.com/",
+        "longUrl": "https://youtube.com/",
         "shortUrl": "https://pic.ni/0LoPBZ",
         "code": "0LoPBZ"
     },
@@ -16,17 +16,5 @@
         "longUrl": "https://georgemarsh.co.uk/",
         "shortUrl": "https://pic.ni/zL6EYv",
         "code": "zL6EYv"
-    },
-    {
-        "id": 4,
-        "longUrl": "https://youtube.com/",
-        "shortUrl": "https://pic.ni/0DwMLX",
-        "code": "0DwMLX"
-    },
-    {
-        "id": 5,
-        "longUrl": "https://12345.com/",
-        "shortUrl": "https://pic.ni/NDzMBj",
-        "code": "NDzMBj"
     }
 ]
