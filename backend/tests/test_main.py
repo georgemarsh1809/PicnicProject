@@ -16,7 +16,7 @@ existing_url = "https://google.com/"  # Ensure the URL already exists in the url
 #   'GET /{code}' tests
 def test_get_code_with_valid_code():
     response = client.get(f"/{existing_code}")
-    assert response.status_code == 200
+    assert response.status_code == 302
     assert "longUrl" in response.json()
 
 def test_get_code_with_invalid_code():
