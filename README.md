@@ -21,7 +21,7 @@ React.
           on Windows)
     - Run the FastAPI server: `uvicorn main:app --reload`
 
-It should be available at: http://localhost:8000
+-   It should be available at: http://localhost:8000
 
 4. For the Front End:
     - From the root directory, navigate to the frontend folder: `cd frontend`
@@ -29,7 +29,8 @@ It should be available at: http://localhost:8000
     - Then, run `npm run dev` to start the React app. Open the prompted URL to
       check the FE renders.
 
-It should run on: http://localhost:5173 (or similar, depending on Vite config)
+-   It should run on: http://localhost:5173 (or similar, depending on Vite
+    config)
 
 ##
 
