@@ -8,7 +8,7 @@ React.
 ### 🔧 Setup:
 
 1. Ensure you have Node.js and Python installed
-2. Clone the repo: `git clone https://github.com/georgemarsh1809/PicnicProject`
+2. Clone the repo: `git clone https://github.com/georgemarsh1809/URLShortener`
 3. For the Back End:
     - From the root directory, navigate to the backend folder: `cd backend`
     - Create and activate virtual environment:
