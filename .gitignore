@@ -6,6 +6,7 @@ dist-ssr
 # Virtual environments
 venv/
 env/    
+*.env
 
 # Logs
 logs

@@ -13,7 +13,7 @@ app = FastAPI()
 # Configure CORS to allow requests from React
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # 
+    allow_origins=["*"],  
     allow_credentials=True,
     allow_methods=["*"],  
     allow_headers=["*"],  
@@ -22,7 +22,9 @@ app.add_middleware(
 # Endpoints
 @app.get("/")
 async def root():
-    return {"This is the root endpoint. Use /shorten/ to shorten URLs or /{url_code} to access shortened URLs."}
+    return {
+        "This is the root endpoint. Use /shorten/ to shorten URLs or /{url_code} to access shortened URLs."
+    }
 
 @app.get("/{url_code}")
 async def get_code(url_code: str):
@@ -39,8 +41,8 @@ async def shorten_url(payload: URLPayload):
 
 # Exception Handling
 @app.exception_handler(RequestValidationError)
-# This catches any RequestValidationErrors, thrown due to an invalid URL format in the payload, 
-#   as defined by Pydantic's AnyHttpUrl 
+# This catches any RequestValidationErrors thrown due to an invalid URL format in the payload, 
+#   as defined by Pydantic's AnyHttpUrl type
 async def validation_exception_handler(request: Request, exc: RequestValidationError):
     return JSONResponse(
         status_code=422,  

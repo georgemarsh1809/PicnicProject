@@ -5,9 +5,12 @@ from fastapi.encoders import jsonable_encoder
 from fastapi.responses import JSONResponse
 from pydantic import AnyHttpUrl
 from hashids  import Hashids
-import json
+from dotenv import load_dotenv
+import os
 
-hashids = Hashids(min_length=6, salt="random_salt")
+load_dotenv()
+SALT = os.getenv("SALT", "fallback-s9kcL-salt")
+hashids = Hashids(min_length=6, salt=SALT)
 
 # Base URL for the shortened URLs:
 BASE_URL = "https://pic.ni/"

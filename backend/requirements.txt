@@ -5,3 +5,4 @@ uvicorn
 json
 pytest
 httpx==0.24.1
+dotenv
