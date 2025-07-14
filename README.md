@@ -20,7 +20,8 @@ shortener API with the following requirements:
 
 -   I built the solution using FastAPI, a Python based API development
     framework, for its simplicity and ease of setup and configuration.
--   I also built a simple UI using React.
+-   I also built a simple UI using React for its easy implementation, and to
+    highlight my proficiency with JavaScript/HTML/CSS.
 
 #### 📜 Assumptions:
 
@@ -29,6 +30,7 @@ shortener API with the following requirements:
     utilised an external hashing module, `hashids.py`, to convert the IDs to
     short, unique codes. In the future, a custom hashing process could be
     implemented for further control and customisation.
+
 -   The base URL doesn't necessarily impact the integrity of the solution: it's
     displayed as https://pic.ni/{code} for consistency with the requirements,
     but its only the code which is relevant. Of course, when hosted locally, the
@@ -37,19 +39,20 @@ shortener API with the following requirements:
 
 #### 📊 Data Storage
 
-The stored URLs are added to a .json file, each with a unique ID (int), which is
-used to generate a unique 6 character code, which can be used in a GET request
-to redirect to the original long URL. The long URL to be shortened is parsed to
-the `/shorten` endpoint via the request body. Even though this isn't as
-practical (can't be simply tested in the URL bar in browser - I use Postman to
-test), I decided this over parsing it as a query parameter for a few reasons:
+-   The stored URLs are added to a .json file, each with a unique ID (int),
+    which is used to generate a unique 6 character code, which can be used in a
+    GET request to redirect to the original long URL. The long URL to be
+    shortened is parsed to the `/shorten` endpoint via the request body. Even
+    though this isn't as practical (can't be simply tested in the URL bar in
+    browser - I use Postman to test), I decided this over parsing it as a query
+    parameter for a few reasons:
 
--   There's an inherit URL length limit of 2000 characters for most browsers
--   Parsing as a query param requires careful URL encoding for special
-    characters
--   Less secure for sensitive URLs
--   Doesn't scale well if more params are to be added (expiry time, creation
-    date etc.)
+    -   There's an inherit URL length limit of 2000 characters for most browsers
+    -   Parsing as a query param requires careful URL encoding for special
+        characters
+    -   Less secure for sensitive URLs
+    -   Doesn't scale well if more params are to be added (expiry time, creation
+        date etc.)
 
 #### ⚠️ Interesting Problems I Faced With This Project:
 
@@ -96,4 +99,30 @@ test), I decided this over parsing it as a query parameter for a few reasons:
 
 #### 🔝 Limitations
 
--
+-   For the scope of this project, a flat JSON file works fine; it's easy to
+    implement and read/write from. In this context, a JSON file would become
+    inefficient at a few thousand entries, at which point, upgrading to a SQLite
+    DB would be more appropriate. I have abstracted the file access to separate
+    file, so implementing a DB wouldn't affect any of the current logic.
+
+-   I used the `AnyHttpUrl` type provided by Pydantic to validate the format of
+    the longUrl provided as the payload for the `/shorten` endpoint. I liked
+    this approach since it offered consistent type-safety, has auto error codes
+    and is easy to implement. It works well in this context, but if full control
+    over what format of URL can be stored, using a custom RegEx would be a
+    better practice. Even better, a hybrid of a defined type and a RegEx could
+    be used.
+
+#### ❗ A Note on Exceptions
+
+-   Originally, when the `shorten_and_save` function found a conflict in the
+    stored URLs, I was simply raising a HTTPException, with a status_code (409)
+    and some content. The same goes for the error handling function is main.py,
+    which catches an error if the parsed URL does not meet the format defined in
+    Pydantic's `AnyHttpUrl` type; a 422 response can be returned to signal a
+    `Unprocessable Content` error. This is sufficient for the requirements of
+    the API, but in order to better handle the errors on the Front End, I
+    changed these HTTPExceptions to a JSONResponse, which still returns a HTTP
+    code which is seen in the console and terminal, but allows for more detailed
+    content to be parsed. Since it returns a JSON object as the content, React
+    can see the error detail I have typed out and render it on the Front End
