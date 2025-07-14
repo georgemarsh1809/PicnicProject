@@ -4,17 +4,59 @@
 
 ### Client: Picnic | Job: Junior Backend Engineer
 
-This is my project for the brief provided by Picnic, which was to create a URL
-shortener API with the following requirements:
+This is my project for the brief provided by Picnic.
 
-#### 📋 Requirements :
+### 🔧 Setup:
 
--   Please build a simple API with:
+1. Ensure you have Node.js and Python installed
+2. Clone the repo: `git clone https://github.com/georgemarsh1809/PicnicProject`
+3. For the Back End:
+    - From the root directory, navigate to the backend folder: `cd backend`
+    - Create and activate virtual environment:
+        - Create: (On Mac) `python3 -m venv .venv` (on Windows, change `python3`
+          to `python`)
+        - Activate: `source .venv/bin/activate` (on Windows,
+          `.venv\Scripts\activate`)
+    - Install dependencies:
+        - `pip3 install -r requirements.txt` (may have to change `pip3` to `pip`
+          on Windows)
+    - Run the FastAPI server: `uvicorn main:app --reload`
+
+It should be available at: http://localhost:8000
+
+4. For the Front End:
+    - From the root directory, navigate to the frontend folder: `cd frontend`
+    - In `/frontend/`, run `npm i` to install all necessary dependencies
+    - Then, run `npm run dev` to start the React app. Open the prompted URL to
+      check the FE renders.
+
+It should run on: http://localhost:5173 (or similar, depending on Vite config)
+
+##
+
+### 🧪 To Run The Tests:
+
+1. Make sure you have `pytest`, `httpx (v0.24.1)`, and `fastapi` installed. \
+   They should have installed when you ran `pip3 install -r requirements.txt`. \
+    If not, run: `pip3 install fastapi pytest httpx==0.24.1 `
+2. Navigate to the backend folder: \
+   `cd backend`
+3. Simply run: `pytest`
+
+##
+
+### Implementation Notes
+
+#### 📋 Project Requirements :
+
+"Please build a simple API with:
 
 1. `POST /shorten` – Accepts a long URL, returns a shortened one (e.g.,
    https://pic.ni/abc123)
 2. `GET /{code} `– Redirects to the original long URL
-3. Basic persistence between requests (e.g., save data to a file or use SQLite)
+3. Basic persistence between requests (e.g., save data to a file or use SQLite)"
+
+##
 
 #### 🛠️ Tech:
 
@@ -22,6 +64,8 @@ shortener API with the following requirements:
     framework, for its simplicity and ease of setup and configuration.
 -   I also built a simple UI using React for its easy implementation, and to
     highlight my proficiency with JavaScript/HTML/CSS.
+
+##
 
 #### 📜 Assumptions:
 
@@ -36,6 +80,8 @@ shortener API with the following requirements:
     but its only the code which is relevant. Of course, when hosted locally, the
     base URL is `https://localhost:8000`, but in production, this could be set
     to anything.
+
+##
 
 #### 📊 Data Storage
 
@@ -53,6 +99,8 @@ shortener API with the following requirements:
     -   Less secure for sensitive URLs
     -   Doesn't scale well if more params are to be added (expiry time, creation
         date etc.)
+
+##
 
 #### ⚠️ Interesting Problems I Faced With This Project:
 
@@ -97,6 +145,8 @@ shortener API with the following requirements:
     commented out the initial RedirectResponse return for the endpoint, which
     can be changed and tested if deemed necessary.
 
+##
+
 #### 🔝 Limitations
 
 -   For the scope of this project, a flat JSON file works fine; it's easy to
@@ -112,6 +162,8 @@ shortener API with the following requirements:
     over what format of URL can be stored, using a custom RegEx would be a
     better practice. Even better, a hybrid of a defined type and a RegEx could
     be used.
+
+##
 
 #### ❗ A Note on Exceptions
 
