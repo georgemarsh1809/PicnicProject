@@ -22,7 +22,7 @@ def get_url_by_code(url_code: str):
     # Search the url_codes array for the parsed short code
     for code in url_codes:
         if code['code'] == url_code: 
-            return JSONResponse(status_code=200, content={"longUrl": code["longUrl"]} )
+            return JSONResponse(status_code=302, content={"longUrl": code["longUrl"]} )
 
     raise HTTPException(status_code=404, detail="Shortened URL code not found")
 

@@ -49,7 +49,7 @@ function App() {
                 method: 'GET',
             });
 
-            if (!res.ok) {
+            if (res.status !== 302) {
                 throw new Error('Failed to redirect');
             }
 
