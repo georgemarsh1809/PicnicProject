@@ -190,4 +190,4 @@ a REST API, with attention to HTTP standards, data persistence, and validation.
 ### ⬆️ Potential Future Updates
 
 Given more time, I’d implement a SQLite database for scalability, stricter URL
-formats using a RegEx, and I'd host it publicly.
+formats using a RegEx, and expiry times for links. I'd also host it publicly.
