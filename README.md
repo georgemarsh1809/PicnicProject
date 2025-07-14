@@ -2,9 +2,8 @@
 
 ![Alt text](/frontend/public/picnicproj.png 'screenshot')
 
-### Client: Picnic | Job: Junior Backend Engineer
-
-This is my project for the brief provided by Picnic.
+This is a prototype of a full-stack URL Shortener application, using FastAPI and
+React.
 
 ### 🔧 Setup:
 
@@ -178,3 +177,13 @@ It should run on: http://localhost:5173 (or similar, depending on Vite config)
     code which is seen in the console and terminal, but allows for more detailed
     content to be parsed. Since it returns a JSON object as the content, React
     can see the error detail I have typed out and render it on the Front End
+
+### 📄 Context
+
+This project was created as part of a technical task for a Junior Backend
+Engineer role at Picnic in July 2025.
+
+It’s intended to demonstrate my ability to understand requirements and implement
+a REST API, with attention to HTTP standards, data persistence, and validation.
+Given more time, I’d implement a SQLite database for scalability, stricter URL
+formats using a RegEx, and would host it publicly.
