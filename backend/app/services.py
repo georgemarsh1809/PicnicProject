@@ -14,9 +14,9 @@ hashids = Hashids(min_length=6, salt=SALT)
 
 # Base URL for the shortened URLs:
 BASE_URL = "https://pic.ni/"
-#   This is only used to generate the short URL, which is stored in the JSON and then returned to the frontend 
-#       for display purposes only.
-#   The frontend will handle the actual redirection to the long URL when the user clicks on the short URL button, 
+# This is only used to generate the short URL, which is stored in the JSON and then returned to the frontend 
+#   for display purposes only.
+# The frontend will handle the actual redirection to the long URL when the user clicks on the short URL button, 
 
 def shorten_and_save(newUrl: AnyHttpUrl) -> Response:
     # Open the JSON 
@@ -28,11 +28,11 @@ def shorten_and_save(newUrl: AnyHttpUrl) -> Response:
     # Only if the JSON is not empty (i.e. there are codes stored)...
     if url_codes: 
         # First, check if the URL already exists in the list...
-        # Iterate through existing codes
+        # Iterate through existing codes:
         for code in url_codes: 
             # If the URL already exists: 
             if str(newUrl) == code['longUrl']: 
-                # Raise a `409 Conflict` error as a JSON response so that the frontend can render the error message
+                # Raise a `409 Conflict` error as a JSON response so that React can render the error message
                 return JSONResponse(
                     status_code=409,
                     content=jsonable_encoder({
@@ -47,7 +47,8 @@ def shorten_and_save(newUrl: AnyHttpUrl) -> Response:
     # The code is generated from the new ID using hashids - this ensures no duplicate codes since each ID is incremented and unique
     new_code = hashids.encode(new_id) 
     new_shortUrl = BASE_URL + new_code
-    new_entry = jsonable_encoder(URLObject(id=new_id, longUrl=newUrl, shortUrl=new_shortUrl, code=new_code).model_dump(mode="json")) # Create a new URLObject and convert it to a dictionary
+    # Create a new URLObject and convert it to a dictionary
+    new_entry = jsonable_encoder(URLObject(id=new_id, longUrl=newUrl, shortUrl=new_shortUrl, code=new_code).model_dump(mode="json")) 
 
     url_codes.append(new_entry)
 
